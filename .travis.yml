@@ -24,7 +24,7 @@ addons:
 script:
   - GOARCH=$ARCH go build hello.go
   - ./hello
-  - git clone --recursive --branch Release-19.06.02 https://github.com/Seagate/openSeaChest.git
+  - git clone --recursive --branch develop https://github.com/Seagate/openSeaChest.git
   - cd openSeaChest
   - patch -p1 -i ../ci/openSeaChest-cross_compile.patch
   - cd Make/gcc
