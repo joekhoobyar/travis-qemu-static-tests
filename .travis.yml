@@ -26,6 +26,6 @@ script:
   - ./hello
   - git clone --recursive --branch develop https://github.com/Seagate/openSeaChest.git
   - cd openSeaChest
-  - patch -p1 -i ../ci/openSeaChest-cross_compile.patch
+  - patch -p1 -l -i ../ci/openSeaChest-cross_compile.patch
   - cd Make/gcc
   - CC=arm-linux-gnueabihf-gcc AR=arm-linux-gnueabihf-ar LD=arm-linux-gnueabihf-ld make
