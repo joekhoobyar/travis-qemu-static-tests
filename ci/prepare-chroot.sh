@@ -3,6 +3,9 @@ CHROOT_DIR=$HOME/chroots/$ARCH
 MIRROR=http://archive.raspbian.org/raspbian
 VERSION=buster
 
+rm -rf ${CHROOT_DIR}
+# [ -f ${CHROOT_DIR}/.chroot_is_done ] && exit
+
 # Get tools needed for chroot
 sudo apt-get install -qq -y binfmt-support sbuild wget debian-archive-keyring ubuntu-keyring gnupg
 
@@ -28,7 +31,7 @@ sudo chroot ${CHROOT_DIR} apt-get --allow-unauthenticated install -qq -y locales
 sudo chroot ${CHROOT_DIR} locale
 sudo chroot ${CHROOT_DIR} bash -c "echo en_US.UTF-8 UTF-8 > /etc/locale.gen"
 sudo chroot ${CHROOT_DIR} locale-gen
-sudo chroot ${CHROOT_DIR} apt-get --allow-unauthenticated install -qq -y build-essential git m4 sudo python
+sudo chroot ${CHROOT_DIR} apt-get --allow-unauthenticated install -qq -y build-essential git m4 sudo python golang-go
 
 # Create build dir and copy travis build files to our chroot environment
 sudo mkdir -p ${CHROOT_DIR}/${TRAVIS_BUILD_DIR}
