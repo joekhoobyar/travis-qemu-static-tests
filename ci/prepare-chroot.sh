@@ -7,11 +7,12 @@ rm -rf ${CHROOT_DIR}
 # [ -f ${CHROOT_DIR}/.chroot_is_done ] && exit
 
 # Get tools needed for chroot
+sudo apt-get update
 sudo apt-get install -qq -y binfmt-support sbuild wget debian-archive-keyring ubuntu-keyring gnupg
 
 # Prepare Debian Buster (10) chroot
-wget http://http.us.debian.org/debian/pool/main/d/debootstrap/debootstrap_1.0.111_all.deb -O /tmp/debootstrap_1.0.111_all.deb
-sudo dpkg --install /tmp/debootstrap_1.0.111_all.deb
+wget http://http.us.debian.org/debian/pool/main/d/debootstrap/debootstrap_1.0.114_all.deb -O /tmp/debootstrap_1.0.114_all.deb
+sudo dpkg --install /tmp/debootstrap_1.0.114_all.deb
 sudo mkdir /tmp/arm-chroot
 sudo debootstrap --foreign --no-check-gpg --include=fakeroot,build-essential \
   --arch=${CHROOT_ARCH} ${VERSION} ${CHROOT_DIR} ${MIRROR}
