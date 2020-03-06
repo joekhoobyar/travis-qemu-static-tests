@@ -28,4 +28,4 @@ script:
   - cd openSeaChest
   - patch -p1 -l -i ../ci/openSeaChest-cross_compile.patch
   - cd Make/gcc
-  - CC=arm-linux-gnueabihf-gcc AR=arm-linux-gnueabihf-ar LD=arm-linux-gnueabihf-ld make
+  - CC=arm-linux-gnueabihf-gcc AR=arm-linux-gnueabihf-ar LD=arm-linux-gnueabihf-ld make release
