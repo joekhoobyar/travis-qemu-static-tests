@@ -14,14 +14,17 @@ env:
 
 before_install:
   - docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
-  - wget http://ports.ubuntu.com/pool/main/s/systemd/libudev-dev_229-4ubuntu21.27_armhf.deb
-  - sudo dpkg --install libudev-dev_229-4ubuntu21.27_armhf.deb
 
 addons:
   apt:
     packages:
     - crossbuild-essential-armhf
+    - libudev-dev
 
 script:
   - GOARCH=$ARCH go build hello.go
   - ./hello
+  - git clone --recursive --branch Release-19.06.02 https://github.com/joekhoobyar/openSeaChest.git
+  - cd openSeaChest/Make/gcc
+  - git checkout cross-compile-fixes
+  - CC=arm-linux-gnueabihf-gcc AR=arm-linux-gnueabihf-ar LD=arm-linux-gnueabihf-ld make
